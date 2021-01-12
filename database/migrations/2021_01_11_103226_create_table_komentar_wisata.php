@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableChildKomentar extends Migration
+class CreateTableKomentarWisata extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTableChildKomentar extends Migration
      */
     public function up()
     {
-        Schema::create('child_komentar', function (Blueprint $table) {
+        Schema::create('komentar_wisata', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_komentar');
-            $table->foreign('id_komentar')->references('id')->on('komentar');
-            $table->text('child_komentar');
+            $table->unsignedBigInteger('id_wisata')->nullable();
+            $table->foreign('id_wisata')->references('id')->on('wisata');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->text('komentar');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateTableChildKomentar extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_child_komentar');
+        Schema::dropIfExists('table_komentar_wisata');
     }
 }

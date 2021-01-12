@@ -21,6 +21,8 @@ Route::get('pantai', 'App\Http\Controllers\UserController@pantai')->name('pantai
 Route::get('gunung', 'App\Http\Controllers\UserController@gunung')->name('gunung');
 Route::get('taman_wisata', 'App\Http\Controllers\UserController@taman_wisata')->name('taman_wisata');
 Route::get('show_wisata/{id}', 'App\Http\Controllers\UserController@show_wisata')->name('show_wisata');
+Route::post('show_wisata/{id}/komentar', 'App\Http\Controllers\UserController@komentar');
+Route::post('show_wisata/{id}/rating', 'App\Http\Controllers\UserController@rating');
 
 Route::get('login', 'App\Http\Controllers\AuthController@index')->name('login');
 Route::post('login', 'App\Http\Controllers\AuthController@login');

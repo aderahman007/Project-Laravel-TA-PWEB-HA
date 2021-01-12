@@ -23,7 +23,7 @@
         <div class="row featurette">
             <div class="col-md-7">
                 <h2 class="featurette-heading">{{$wst->nama}}</h2>
-                <p class="lead">{{$wst->descripsi}}</p>
+                <p class="lead"><?= substr($wst->descripsi, 0, 100) . '...'; ?></p>
                 <p class="text-muted"><img src="{{asset('css/lokasi.png')}}" alt="lokasi" width="25" height="30">{{$wst->lokasi}}</p>
             </div>
             <div class="col-md-5">
@@ -39,7 +39,7 @@
 
     <!-- /END THE FEATURETTES -->
 
-    
+
 </div>
 @include('user.modal_jumbotron')
 

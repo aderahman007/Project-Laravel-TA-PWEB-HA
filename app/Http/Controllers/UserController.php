@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Komentar;
+use App\Models\Rating;
 use App\Models\Wisata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,43 +36,83 @@ class UserController extends Controller
         return view('user.index', ['jumbotron' => $jumbotron, 'carousel' => $carousel, 'wisata' => $wisata]);
     }
 
-    public function about(){
+    public function about()
+    {
         return view('user.about');
     }
 
-    public function pantai(){
+    public function pantai()
+    {
         $pantai = DB::table('wisata')
-                        ->join('categori', 'wisata.id_categori', '=', 'categori.id')
-                        ->select('wisata.id', 'wisata.nama as nama_wisata', 'wisata.descripsi', 'wisata.foto', 'categori.nama')
-                        ->where('categori.nama', '=', 'pantai')
-                        ->simplePaginate(10);
+            ->join('categori', 'wisata.id_categori', '=', 'categori.id')
+            ->select('wisata.id', 'wisata.nama as nama_wisata', 'wisata.descripsi', 'wisata.foto', 'categori.nama')
+            ->where('categori.nama', '=', 'pantai')
+            ->simplePaginate(10);
         // dd($pantai);
         return view('user.pantai', ['pantai' => $pantai]);
     }
-    public function gunung(){
+    public function gunung()
+    {
         $gunung = DB::table('wisata')
-                        ->join('categori', 'wisata.id_categori', '=', 'categori.id')
-                        ->select('wisata.id', 'wisata.nama as nama_wisata', 'wisata.descripsi', 'wisata.foto', 'categori.nama')
-                        ->where('categori.nama', '=', 'gunung')
-                        ->simplePaginate(10);
+            ->join('categori', 'wisata.id_categori', '=', 'categori.id')
+            ->select('wisata.id', 'wisata.nama as nama_wisata', 'wisata.descripsi', 'wisata.foto', 'categori.nama')
+            ->where('categori.nama', '=', 'gunung')
+            ->simplePaginate(10);
         // dd($pantai);
         return view('user.gunung', ['gunung' => $gunung]);
     }
-    public function taman_wisata(){
+    public function taman_wisata()
+    {
         $taman_wisata = DB::table('wisata')
-                        ->join('categori', 'wisata.id_categori', '=', 'categori.id')
-                        ->select('wisata.id', 'wisata.nama as nama_wisata', 'wisata.descripsi', 'wisata.foto', 'categori.nama')
-                        ->where('categori.nama', '=', 'taman wisata')
-                        ->simplePaginate(10);
+            ->join('categori', 'wisata.id_categori', '=', 'categori.id')
+            ->select('wisata.id', 'wisata.nama as nama_wisata', 'wisata.descripsi', 'wisata.foto', 'categori.nama')
+            ->where('categori.nama', '=', 'taman wisata')
+            ->simplePaginate(10);
         // dd($pantai);
         return view('user.taman_wisata', ['taman_wisata' => $taman_wisata]);
     }
 
-    public function show_wisata($id){
+    public function show_wisata($id)
+    {
         $showWisata = Wisata::findOrFail($id);
-        // dd($showWisata);
-        return view('user.showWisata', ['showWisata' => $showWisata]);
+        $komentar = DB::table('komentar_wisata')
+            ->join('wisata', 'wisata.id', '=', 'komentar_wisata.id_wisata')
+            ->where('komentar_wisata.id_wisata', '=', $id)
+            ->simplePaginate(3);
+        $show_rating = DB::table('rating')
+            ->join('wisata', 'wisata.id', '=', 'rating.id_wisata')
+            ->where('rating.id_wisata', '=', $id)
+            ->avg('rating');
+            // ->select('rating')
+            // ->get();
+        // dd($show_rating);
+        return view('user.showWisata', ['showWisata' => $showWisata, 'komentar' => $komentar, 'rating' => $show_rating]);
     }
+
+    public function komentar(Request $request)
+    {
+        $item = [
+            'id_wisata' => request()->segment(2),
+            // 'parent_id' => '',
+            'nama' => $request->input('nama'),
+            'komentar' => $request->input('komentar'),
+        ];
+        // dd($item);
+        Komentar::create($item);
+        return redirect('show_wisata/' . request()->segment(2));
+    }
+
+    public function rating(Request $request){
+        $item = [
+            'id_wisata' => request()->segment(2),
+            'rating' => $request->input('selected_rating'),
+        ];
+
+        // dd($item);
+        Rating::create($item);
+        return redirect('show_wisata/' . request()->segment(2));
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

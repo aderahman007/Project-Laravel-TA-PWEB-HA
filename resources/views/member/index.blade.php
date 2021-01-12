@@ -31,7 +31,7 @@
                         <td>{{$w->nama}}</td>
                         <td>{{$w->lokasi}}</td>
                         <td><img src="{{asset('image_upload/' . $w->foto)}}" alt="" height="75" width="100"></td>
-                        <td>{{$w->descripsi}}</td>
+                        <td><?= substr($w->descripsi, 0, 100)  . '...'; ?></td>
                         <td>
                             <div class="row">
                                 <a class="btn btn-sm btn-outline-info mr-lg-2 detail" onclick="showCategori('+{{$w->id}}+')">Detail</a>

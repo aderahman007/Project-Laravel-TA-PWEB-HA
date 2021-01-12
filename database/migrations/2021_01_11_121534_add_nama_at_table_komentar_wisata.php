@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableKomentar extends Migration
+class AddNamaAtTableKomentarWisata extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateTableKomentar extends Migration
      */
     public function up()
     {
-        Schema::create('komentar', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->text('komentar');
-            $table->timestamps();
+        Schema::table('komentar_wisata', function (Blueprint $table) {
+            $table->text('nama')->after('parent_id');
         });
     }
 
@@ -27,6 +25,6 @@ class CreateTableKomentar extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_komentar');
+        //
     }
 }

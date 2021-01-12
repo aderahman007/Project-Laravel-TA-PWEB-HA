@@ -15,7 +15,6 @@
                         <label for="categori">Categori</label>
                         <input type="text" class="form-control" name="nama" id="categori" placeholder="Categori">
                     </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

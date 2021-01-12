@@ -24,10 +24,10 @@ class WisataController extends Controller
         $categori = Categori::all();
         $user = User::all();
         $data = DB::table('wisata')
-                    ->join('categori', 'wisata.id_categori', '=', 'categori.id')
-                    ->join('users', 'wisata.id_user', '=', 'users.id')
-                    ->select('wisata.*', 'categori.nama AS cat', 'users.name AS us')
-                    ->simplePaginate(5);
+            ->join('categori', 'wisata.id_categori', '=', 'categori.id')
+            ->join('users', 'wisata.id_user', '=', 'users.id')
+            ->select('wisata.*', 'categori.nama AS cat', 'users.name AS us')
+            ->simplePaginate(5);
         return view('admin.wisata.index', ['data' => $data, 'categori' => $categori, 'user' => $user]);
     }
 
@@ -49,9 +49,9 @@ class WisataController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $image = $request->file('image');
-        $filename = time()."_".$image->getClientOriginalName();
+        $filename = time() . "_" . $image->getClientOriginalName();
         $address = 'image_upload';
         $image->move($address, $filename);
 
@@ -65,7 +65,7 @@ class WisataController extends Controller
             'id_user' => $request->input('id_user'),
         ];
 
-        
+
         Wisata::create($item);
         Session::flash('success', 'Wisata berhasil ditambah');
         return redirect('/admin/wisata');
@@ -108,8 +108,8 @@ class WisataController extends Controller
         $data = Wisata::findOrFail($id);
 
         $filename = $data->foto;
-        if($request->hasFile('image')){
-            $image_path = public_path().'/image_upload/'.$filename;
+        if ($request->hasFile('image')) {
+            $image_path = public_path() . '/image_upload/' . $filename;
             if (file_exists($image_path))
                 File::delete($image_path);
             $image = $request->file('image');
@@ -128,7 +128,7 @@ class WisataController extends Controller
         $data->update();
 
         Session::flash('success', 'Wisata berhasil diubah');
-        return redirect()->route('wisata.index');
+        return redirect('/admin/wisata');
     }
 
     /**
