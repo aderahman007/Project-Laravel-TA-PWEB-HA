@@ -136,12 +136,14 @@
             }));
         });
 
+	/*
         $('.submit').on('click', function() {
 
             var rating = $('#selected_rating').val();
             $('.selected-rating').attr('value', rating);
 
         })
+	*/
     </script>
     <script>
         $('.jmb').on('click', function(e) {

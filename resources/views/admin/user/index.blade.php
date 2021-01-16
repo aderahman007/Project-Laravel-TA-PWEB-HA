@@ -110,7 +110,9 @@
             type: "GET",
             dataType: "JSON",
             success: function(data) {
-                $('.categori').attr('value', data.nama);
+                $('.nama').val(data.name);
+                $('.email').val(data.email);
+                $('.password').val('*******');
                 $('.action').attr('action', '{{url("admin/user")}}' + '/' + data.id);
 
             },

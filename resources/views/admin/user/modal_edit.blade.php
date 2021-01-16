@@ -14,19 +14,19 @@
                     {{method_field('PATCH')}}
                     <div class="form-group">
                         <label for="categori">Nama</label>
-                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama">
+                        <input type="text" class="form-control nama" name="nama" id="nama" placeholder="Nama">
                     </div>
                     <div class="form-group">
                         <label for="categori">Email</label>
-                        <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                        <input type="text" class="form-control email" name="email" id="email" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <label for="categori">Password</label>
-                        <input type="text" class="form-control" name="password" id="password" placeholder="Password">
+                        <input type="text" class="form-control password" name="password" id="password" placeholder="Password">
                     </div>
                     <div class="form-group">
                         <label for="categori">Jenis Wisata</label>
-                        <select class="form-control" name="id_wisata" id="id_wisata">
+                        <select class="form-control wisata" name="id_wisata" id="id_wisata">
                             @foreach($categori as $c)
                             <option value="{{$c->id}}">{{$c->nama}}</option>
                             @endforeach

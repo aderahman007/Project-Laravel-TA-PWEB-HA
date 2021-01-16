@@ -16,8 +16,9 @@ class CreateTableKomentarWisata extends Migration
         Schema::create('komentar_wisata', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_wisata')->nullable();
-            $table->foreign('id_wisata')->references('id')->on('wisata');
+            $table->foreign('id_wisata')->references('id')->on('wisata')->cascadeOnDelete()->cascadeOnUpdate();
             $table->unsignedBigInteger('parent_id')->nullable();
+            $table->string('nama');
             $table->text('komentar');
             $table->timestamps();
         });

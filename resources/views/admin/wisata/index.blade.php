@@ -8,7 +8,7 @@
         <div class="card-header">
             <div class="row">
                 <h5 class="card-title">Data Tempat Wisata</h5>
-                <a class="btn btn-primary ml-auto" href="#" data-toggle="modal" data-target="#modaltambah" data-keyboard="false" data-backdrop="static">Tambah Tempat Wisata</a>
+                <a class="btn btn-primary ml-auto" href="#" onclick="tambah()">Tambah Tempat Wisata</a>
             </div>
         </div>
         <div class="card-body">
@@ -40,7 +40,7 @@
                             <div class="row">
                                 <a class="btn btn-sm btn-outline-info mr-lg-2 detail" onclick="showCategori('+{{$w->id}}+')">Detail</a>
                                 <a class="btn btn-sm btn-outline-warning mr-lg-2 edit" onclick="editCategori('+{{$w->id}}+')">Edit</a>
-                                <form action="{{route('wisata.destroy', $w->id)}}" method="post">
+                                <form action="{{url('admin/wisata', $w->id)}}" method="post">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
                                     <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
@@ -77,6 +77,15 @@
 </script>
 
 <script>
+    function tambah() {
+        $('#modaltambah').modal({
+            keyboard: false,
+            backdrop: 'static',
+            show: true,
+        });
+        $('#modaltambah form')[0].reset();
+    }
+
     function showCategori(id) {
         $('#modaldetail').modal({
             keyboard: false,
@@ -117,12 +126,12 @@
             type: "GET",
             dataType: "JSON",
             success: function(data) {
-                $('.nama').attr('value', data.nama);
-                $('.lokasi').attr('value', data.lokasi);
+                $('.nama').val(data.nama);
+                $('.lokasi').val(data.lokasi);
                 $('.foto').attr('src', '{{asset("image_upload")}}' + '/' + data.foto);
-                $('.descripsi').attr('value', data.descripsi);
-                $('.id_categori').attr('value', data.cat);
-                $('.id_user').attr('value', data.us);
+                $('.descripsi').val(data.descripsi);
+                $('.id_categori').val(data.cat);
+                $('.id_user').val(data.us);
                 $('.action').attr('action', '{{url("admin/wisata")}}' + '/' + data.id);
 
             },

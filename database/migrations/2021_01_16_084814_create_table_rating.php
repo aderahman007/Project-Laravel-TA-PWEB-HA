@@ -16,7 +16,7 @@ class CreateTableRating extends Migration
         Schema::create('rating', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_wisata')->nullable();
-            $table->foreign('id_wisata')->references('id')->on('wisata');
+            $table->foreign('id_wisata')->references('id')->on('wisata')->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('rating');
             $table->timestamps();
         });

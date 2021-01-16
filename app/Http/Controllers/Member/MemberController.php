@@ -137,7 +137,10 @@ class MemberController extends Controller
     public function destroy($id)
     {
         $data = Wisata::findOrFail($id);
-
+        $filename = $data->foto;
+        $image_path = public_path() . '/image_upload/' . $filename;
+        if (file_exists($image_path))
+            File::delete($image_path);
         $data->delete();
 
         Session::flash('success', 'Wisata berhasil dihapus');

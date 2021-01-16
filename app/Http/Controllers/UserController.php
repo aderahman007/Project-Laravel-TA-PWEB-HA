@@ -83,8 +83,8 @@ class UserController extends Controller
             ->join('wisata', 'wisata.id', '=', 'rating.id_wisata')
             ->where('rating.id_wisata', '=', $id)
             ->avg('rating');
-            // ->select('rating')
-            // ->get();
+        // ->select('rating')
+        // ->get();
         // dd($show_rating);
         return view('user.showWisata', ['showWisata' => $showWisata, 'komentar' => $komentar, 'rating' => $show_rating]);
     }
@@ -102,17 +102,23 @@ class UserController extends Controller
         return redirect('show_wisata/' . request()->segment(2));
     }
 
-    public function rating(Request $request){
-        $item = [
-            'id_wisata' => request()->segment(2),
-            'rating' => $request->input('selected_rating'),
-        ];
+    public function rating(Request $request)
+    {
+        if ($request->input('selected_rating') == null) {
+            # code...
+            return redirect('show_wisata/' . request()->segment(2));
+        } else {
+            $item = [
+                'id_wisata' => request()->segment(2),
+                'rating' => $request->input('selected_rating'),
+            ];
+        }
 
         // dd($item);
         Rating::create($item);
         return redirect('show_wisata/' . request()->segment(2));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
