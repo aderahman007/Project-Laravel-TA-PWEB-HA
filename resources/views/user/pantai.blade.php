@@ -31,6 +31,7 @@
                     </div>
                 </div>
             </div>
+            {{$pantai->links()}}
             @endforeach
 
 

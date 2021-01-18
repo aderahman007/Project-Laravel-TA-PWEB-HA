@@ -8,7 +8,7 @@
     <div class="carousel-inner">
         @foreach($carousel as $c => $slider)
         <div class="carousel-item {{$c == 0 ? 'active' : ''}}">
-            <img class="first-slide" src="{{asset('image_upload/carousel/' . $slider['gambar'])}}" alt="First slide">
+            <img class="first-slide cs" src="{{asset('image_upload/carousel/' . $slider['gambar'])}}" alt="First slide">
             <div class="container">
                 <div class="carousel-caption text-left">
                     <h1>{{$slider['title']}}</h1>

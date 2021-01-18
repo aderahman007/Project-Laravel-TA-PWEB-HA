@@ -71,12 +71,32 @@ class UserController extends Controller
         // dd($pantai);
         return view('user.taman_wisata', ['taman_wisata' => $taman_wisata]);
     }
+    public function air_terjun()
+    {
+        $air_terjun = DB::table('wisata')
+            ->join('categori', 'wisata.id_categori', '=', 'categori.id')
+            ->select('wisata.id', 'wisata.nama as nama_wisata', 'wisata.descripsi', 'wisata.foto', 'categori.nama')
+            ->where('categori.nama', '=', 'air terjun')
+            ->simplePaginate(10);
+        // dd($pantai);
+        return view('user.air_terjun', ['air_terjun' => $air_terjun]);
+    }
+    public function all_categori()
+    {
+        $all_categori = DB::table('wisata')
+            ->join('categori', 'wisata.id_categori', '=', 'categori.id')
+            ->select('wisata.id', 'wisata.nama as nama_wisata', 'wisata.descripsi', 'wisata.foto', 'categori.nama')
+            ->simplePaginate(10);
+        // dd($pantai);
+        return view('user.all_categori', ['all_categori' => $all_categori]);
+    }
 
     public function show_wisata($id)
     {
         $showWisata = Wisata::findOrFail($id);
         $komentar = DB::table('komentar_wisata')
             ->join('wisata', 'wisata.id', '=', 'komentar_wisata.id_wisata')
+            ->select('komentar_wisata.*')
             ->where('komentar_wisata.id_wisata', '=', $id)
             ->simplePaginate(3);
         $show_rating = DB::table('rating')

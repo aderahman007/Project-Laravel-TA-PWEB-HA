@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Komentar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class KomentarController extends Controller
 {
@@ -14,7 +17,8 @@ class KomentarController extends Controller
      */
     public function index()
     {
-        //
+        $komentar = Komentar::simplePaginate(3);
+        return view('admin.komentar.index', ['komentar' => $komentar]);
     }
 
     /**
@@ -46,7 +50,8 @@ class KomentarController extends Controller
      */
     public function show($id)
     {
-        //
+        $komentar = Komentar::findOrFail($id);
+        return $komentar;
     }
 
     /**
@@ -57,7 +62,8 @@ class KomentarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $komentar = Komentar::findOrFail($id);
+        return $komentar;
     }
 
     /**
@@ -69,7 +75,13 @@ class KomentarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $komentar = Komentar::findOrFail($id);
+        $input = $request->all();
+
+        $komentar->update($input);
+
+        Session::flash('success', 'komentar berhasil diubah');
+        return redirect()->route('komentar.index');
     }
 
     /**
@@ -80,6 +92,10 @@ class KomentarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Komentar::findOrFail($id);
+        $data->delete();
+
+        Session::flash('success', 'Komentar berhasil dihapus');
+        return redirect('admin/komentar');
     }
 }

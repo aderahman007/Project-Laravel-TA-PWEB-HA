@@ -29,6 +29,17 @@ class MemberController extends Controller
         return view('member.index', ['data' => $data, 'user' => $user, 'categori' => $categori]);
     }
 
+    public function dashboard(){
+        $carousel = [
+            ['title' => 'Pantai Gigi Hiu', 'descripsi' => 'Gugusan batu karang yg ada di pantai Pegadung kecamatan Kelumbayan Kabupaten Tanggamus, Lampung', 'gambar' => '1.jpg'],
+            ['title' => 'Menara Siger', 'descripsi' => 'Menara siger adalah simbol bangunan masa depan representasi fenomena masyarakat lampung', 'gambar' => '2.jpg'],
+            ['title' => 'Pantai Labuan Jukung', 'descripsi' => 'Pantai labuan jukung mempunyai pemandangan alam yg indah, ombak yg lumayan mengasyikkan untuk beberapa peselancar, nyaman untuk tiap-tiap kegiatan pantai', 'gambar' => '3.jpg'],
+            ['title' => 'Pulau Pahawang', 'descripsi' => 'Pulau Pahawang merupakan salah satu tempat wisata di Lampung yang menjadi surga bagi para pecinta diving, snorkeling atau sekedar menikmati pemandangan saja', 'gambar' => '4.jpg'],
+        ];
+
+        return view('member.dashboard', ['carousel' => $carousel]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

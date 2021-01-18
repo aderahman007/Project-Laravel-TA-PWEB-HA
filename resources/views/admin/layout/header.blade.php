@@ -9,21 +9,27 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <!-- <li class="nav-item active">
-                <a class="nav-link" href="#">Dashboard </a>
+            <li class="nav-item {{ (request()-> is('/')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('UserIndex')}}">Dashboard </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+            <li class="nav-item {{ (request()-> is('about*')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('about')}}">About</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pantai</a>
+            <li class="nav-item {{ (request()-> is('pantai*')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('pantai')}}">Pantai</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Gunung</a>
+            <li class="nav-item {{ (request()-> is('gunung')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('gunung')}}">Gunung</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Taman Wisata</a>
-            </li> -->
+            <li class="nav-item {{ (request()-> is('taman_wisata')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('taman_wisata')}}">Taman Wisata</a>
+            </li>
+            <li class="nav-item {{ (request()-> is('air_terjun')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('air_terjun')}}">Air Terjun</a>
+            </li>
+            <li class="nav-item {{ (request()-> is('all_categori')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('all_categori')}}">Semua Categori</a>
+            </li>
         </ul>
         <!-- <a class="btn btn-outline-primary mr-2" href="#">Daftar</a>
             <a class="btn btn-success" href="#">login</a> -->

@@ -1,4 +1,4 @@
-@extends('admin.layout.template')
+@extends('member.layout.template')
 @push('css')
 <style>
     .cs {

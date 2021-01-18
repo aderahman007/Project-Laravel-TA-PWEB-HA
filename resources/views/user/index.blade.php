@@ -2,6 +2,11 @@
 @push('css')
 <link rel="stylesheet" href="{{asset('css/carousel.css')}}">
 <link rel="stylesheet" href="{{asset('css/blog.css')}}">
+<style>
+    .cs {
+        filter: brightness(50%);
+    }
+</style>
 @endpush
 @section('content')
 

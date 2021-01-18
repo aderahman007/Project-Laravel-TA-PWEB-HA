@@ -31,6 +31,7 @@
                     </div>
                 </div>
             </div>
+            {{$taman_wisata->links()}}
             @endforeach
 
 

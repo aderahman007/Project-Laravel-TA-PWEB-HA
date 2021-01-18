@@ -7,13 +7,13 @@
             </center>
         </div>
         <li class="nav-item">
-            <a class="nav-link active" href="{{route('MemberIndex')}}">
+            <a class="nav-link active" href="{{route('MemberDashboard')}}">
                 Dashboard
             </a>
         </li>
         
         <li class="nav-item">
-            <a class="nav-link" href="wisata">
+            <a class="nav-link" href="{{url('member/wisata')}}">
                 Kelola Wisata
             </a>
         </li>

@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Categori</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Komentar</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,9 +13,11 @@
                     {{csrf_field()}}
                     {{method_field('PATCH')}}
                     <div class="form-group">
-                        <label for="categori">Categori</label>
-                        <input type="text" class="form-control categori" name="nama" id="categori" placeholder="Categori">
-                        
+                        <label for="nama">nama</label>
+                        <input type="text" class="form-control nama" name="nama" id="nama" placeholder="nama">
+                        <label for="komentar">komentar</label>
+                        <input type="text" class="form-control komentar" name="komentar" id="komentar" placeholder="komentar">
+
                     </div>
 
             </div>

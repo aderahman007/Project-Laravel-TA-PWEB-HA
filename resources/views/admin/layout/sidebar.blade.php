@@ -22,12 +22,12 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="wisata">
+            <a class="nav-link" href="{{url('admin/wisata')}}">
                 Kelola Wisata
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('komentar.index')}}">
                 Kelola Komentar
             </a>
         </li>

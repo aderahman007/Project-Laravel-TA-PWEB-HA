@@ -88,10 +88,10 @@
                             <button type="submit" class="btn btn-success">Submit</button>
                         </form>
                     </div>
-                    <div class="col-md-12 mt-5 media">
+                    <div class="col-md-12 mt-5">
                         <!-- <img src="gambar4.jpg" class="mr-3" alt="..." style="width: 100px"> -->
                         @foreach($komentar as $k)
-                        <div class="card p-3 media-body">
+                        <div class="card p-3">
                             <h3 class="mt-0">{{$k->nama}}</h3>
                             <!-- <p class="text-success"><a href="#">Reply</a></p> -->
                             {{$k->komentar}}
@@ -102,6 +102,7 @@
                         <hr>
                         @endforeach
                     </div>
+                    {{$komentar->links()}}
                 </div>
             </div>
         </div>
