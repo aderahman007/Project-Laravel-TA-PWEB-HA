@@ -31,28 +31,30 @@ class AuthController extends Controller
         return view('auth.index');
     }
 
-    public function register(){
+    public function register()
+    {
         $data = Categori::all();
         return view('auth.register', ['categori' => $data]);
     }
 
-    public function aksiRegister(Request $request){
+    public function aksiRegister(Request $request)
+    {
         $data = [
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            $pw = Hash::make($request->input('password')), 
+            $pw = Hash::make($request->input('password')),
             'password' => $pw,
             'id_categori' => $request->input('id_categori'),
             'role' => 'member',
         ];
-        
+
         $daftar = User::create($data);
         // dd($data);
         if ($daftar) {
             # code...
             Session::flash('success', 'Anda berhasil mendaftar silahkan login');
             return redirect()->route('login');
-        }else {
+        } else {
             Session::flash('error', 'Anda gagal mendaftar silahkan coba lagi!');
         }
     }
@@ -73,16 +75,16 @@ class AuthController extends Controller
                 # code...
                 Session::flash('success', 'Selamat anda berhasil login');
                 return redirect()->route('AdminIndex');
-            }else {
+            } else {
                 Session::flash('success', 'Selamat anda berhasil login');
-                return redirect()->route('MemberIndex');
+                return redirect()->route('MemberDashboard');
             }
         } else {
             Session::flash('error', 'Email/password salah');
             return redirect()->route('login');
         }
     }
-    
+
     public function logout()
     {
         Auth::logout();
